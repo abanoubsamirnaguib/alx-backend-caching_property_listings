@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.cache import cache_page
 from .models import Property
+from .utils import get_all_properties
 
 # Create your views here.
 
@@ -10,8 +11,9 @@ def property_list(request):
     """
     API endpoint to return all properties.
     Response is cached in Redis for 15 minutes.
+    Uses low-level caching for the queryset via get_all_properties().
     """
-    properties = Property.objects.all()
+    properties = get_all_properties()
     
     # Convert properties to JSON-serializable format
     properties_data = []
