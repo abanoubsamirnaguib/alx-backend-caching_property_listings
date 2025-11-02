@@ -155,13 +155,18 @@ LOGGING = {
         'console': {
             'class': 'logging.StreamHandler',
         },
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": "debug.log",
+        },
     },
     'root': {
-        'handlers': ['console'],
+        'handlers': ['console', 'file'],
     },
     'loggers': {
         'django_redis': {
-            'handlers': ['console'],
+            'handlers': ['console' , 'file'],
             'level': 'INFO',
         },
     },
